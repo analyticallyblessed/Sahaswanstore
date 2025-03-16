@@ -1,0 +1,23 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'presentation/providers/auth_provider.dart';
+import 'presentation/pages/login_page.dart';
+
+void main() {
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => AuthProvider(),
+      child: MyApp(),
+    ),
+  );
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter App',
+      home: LoginPage(),
+    );
+  }
+}
