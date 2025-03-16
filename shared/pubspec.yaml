@@ -1,0 +1,5 @@
+name: shared
+description: Shared entities for client and server
+version: 1.0.0
+environment:
+  sdk: '>=2.19.0 <3.0.0'
