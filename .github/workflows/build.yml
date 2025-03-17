@@ -10,7 +10,7 @@ jobs:
       - uses: dart-lang/setup-dart@v1
       - run: cd server && dart pub get
       - run: cd server && dart compile exe bin/server.dart -o server
-      - run: ls -la server/  # Debug: Check if server binary exists
+      - run: ls -la server/
       - uses: actions/upload-artifact@v3
         with:
           name: server-binary
