@@ -1,9 +1,7 @@
 name: Build Sahaswanstore
-
 on:
   push:
     branches: [ main ]
-
 jobs:
   build-server:
     runs-on: ubuntu-latest
@@ -12,11 +10,12 @@ jobs:
       - uses: dart-lang/setup-dart@v1
       - run: cd server && dart pub get
       - run: cd server && dart compile exe bin/server.dart -o server
+      - run: ls -la server/  # Debug: Check if server binary exists
       - uses: actions/upload-artifact@v3
         with:
           name: server-binary
           path: server/server
-
+          if-no-files-found: error  # Fail if no file
   build-client-apk:
     runs-on: ubuntu-latest
     steps:
@@ -26,7 +25,9 @@ jobs:
           flutter-version: '3.19.x'
       - run: cd client && flutter pub get
       - run: cd client && flutter build apk --release
+      - run: ls -la client/build/app/outputs/flutter-apk/  # Debug: Check APK
       - uses: actions/upload-artifact@v3
         with:
           name: app-apk
           path: client/build/app/outputs/flutter-apk/app-release.apk
+          if-no-files-found: error  # Fail if no file
